@@ -349,7 +349,7 @@ var Controlled = (function (_super) {
                 cm.defineMode(this.props.defineMode.name, this.props.defineMode.fn);
             }
         }
-        var initOptions = Object.assign({}, this.props.initOptions, cm.defaults);
+        var initOptions = Object.assign({}, cm.defaults, this.props.initOptions);
         this.editor = cm(this.ref, initOptions);
         this.shared = new Shared(this.editor, this.props);
         this.mirror = cm(function () {
@@ -482,7 +482,8 @@ var UnControlled = (function (_super) {
                 cm.defineMode(this.props.defineMode.name, this.props.defineMode.fn);
             }
         }
-        this.editor = cm(this.ref);
+        var initOptions = Object.assign({}, cm.defaults, this.props.initOptions);
+        this.editor = cm(this.ref, initOptions);
         this.shared = new Shared(this.editor, this.props);
         this.editor.on('beforeChange', function (cm, data) {
             if (_this.props.onBeforeChange) {

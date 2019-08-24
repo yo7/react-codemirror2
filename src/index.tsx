@@ -490,7 +490,7 @@ export class Controlled extends React.Component<IControlledCodeMirror, any> {
       }
     }
 
-    const initOptions = Object.assign({}, this.props.initOptions, cm.defaults)
+    const initOptions = Object.assign({}, cm.defaults, this.props.initOptions)
 
     this.editor = cm(this.ref, initOptions) as codemirror.Editor;
 
@@ -695,7 +695,9 @@ export class UnControlled extends React.Component<IUnControlledCodeMirror, any> 
       }
     }
 
-    this.editor = cm(this.ref) as codemirror.Editor;
+    const initOptions = Object.assign({}, cm.defaults, this.props.initOptions)
+
+    this.editor = cm(this.ref, initOptions) as codemirror.Editor;
 
     this.shared = new Shared(this.editor, this.props);
 
