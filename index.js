@@ -495,7 +495,9 @@ var Controlled = function(_super) {
       }
     }
 
-    this.editor = cm(this.ref);
+    var initOptions = _extends({}, this.props.initOptions, cm.defaults);
+
+    this.editor = cm(this.ref, initOptions);
     this.shared = new Shared(this.editor, this.props);
     this.mirror = cm(function() {});
     this.editor.on('electricInput', function() {

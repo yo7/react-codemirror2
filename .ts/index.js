@@ -349,7 +349,8 @@ var Controlled = (function (_super) {
                 cm.defineMode(this.props.defineMode.name, this.props.defineMode.fn);
             }
         }
-        this.editor = cm(this.ref);
+        var initOptions = Object.assign({}, this.props.initOptions, cm.defaults);
+        this.editor = cm(this.ref, initOptions);
         this.shared = new Shared(this.editor, this.props);
         this.mirror = cm(function () {
         });
