@@ -495,7 +495,7 @@ var Controlled = function(_super) {
       }
     }
 
-    var initOptions = _extends({}, this.props.initOptions, cm.defaults);
+    var initOptions = _extends({}, cm.defaults, this.props.initOptions);
 
     this.editor = cm(this.ref, initOptions);
     this.shared = new Shared(this.editor, this.props);
@@ -674,7 +674,9 @@ var UnControlled = function(_super) {
       }
     }
 
-    this.editor = cm(this.ref);
+    var initOptions = _extends({}, cm.defaults, this.props.initOptions);
+
+    this.editor = cm(this.ref, initOptions);
     this.shared = new Shared(this.editor, this.props);
     this.editor.on('beforeChange', function(cm, data) {
       if (_this.props.onBeforeChange) {
