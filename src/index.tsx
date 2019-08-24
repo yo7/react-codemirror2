@@ -67,6 +67,7 @@ export interface ICodeMirror {
   onUpdate?: (editor: codemirror.Editor) => void;
   onViewportChange?: (editor: codemirror.Editor, start: number, end: number) => void;
   options?: codemirror.EditorConfiguration
+  initOptions?: codemirror.EditorConfiguration
   selection?: { ranges: Array<ISetSelectionOptions>, focus?: boolean };
   scroll?: ISetScrollOptions;
 }
@@ -489,7 +490,9 @@ export class Controlled extends React.Component<IControlledCodeMirror, any> {
       }
     }
 
-    this.editor = cm(this.ref) as codemirror.Editor;
+    const initOptions = Object.assign({}, this.props.initOptions, cm.defaults)
+
+    this.editor = cm(this.ref, initOptions) as codemirror.Editor;
 
     this.shared = new Shared(this.editor, this.props);
 

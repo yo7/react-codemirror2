@@ -51,6 +51,7 @@ export interface ICodeMirror {
     onUpdate?: (editor: codemirror.Editor) => void;
     onViewportChange?: (editor: codemirror.Editor, start: number, end: number) => void;
     options?: codemirror.EditorConfiguration;
+    initOptions?: codemirror.EditorConfiguration;
     selection?: {
         ranges: Array<ISetSelectionOptions>;
         focus?: boolean;
